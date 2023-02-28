@@ -17,16 +17,11 @@
 
 ### Setup
 
-#### `.env` requirements (where applicable)
-
-for now I have none and do not require one
-
+`npm install`
 
 #### How to initialize/run your application (where applicable)
 
-- e.g. `npm start`
-
-#### How to use your library (where applicable)
+- e.g. `node hub.js`
 
 #### Features / Routes
 
