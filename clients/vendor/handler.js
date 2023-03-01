@@ -20,12 +20,12 @@ function createPackage(payload = null){
   }
 
   // not required, but maybe useful for debugging
-  console.log('VENDOR: we have an order ready');
+  console.log('VENDOR: order ready for pickup');
   socket.emit('PICKUP', payload);
 }
 
-function thankDriver(){
-  console.log('Thank you for ordering!');
+function thankDriver(payload){
+  console.log('Thank you for ordering!', payload.customer);
   process.exit();
 }
 

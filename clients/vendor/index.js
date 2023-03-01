@@ -4,12 +4,14 @@ const { createPackage, thankDriver } = require('./handler');
 // const socket  = io('http://localhost:3001/caps');
 const { socket } = require('../socket');
 
-socket.on('DELIVERED', confirmDelivery);
+socket.on('DELIVERED', (payload) => {
+  confirmDelivery(payload);
+});
 
 // responds by logging a message to the console:
-function confirmDelivery() {
+function confirmDelivery(payload) {
   setTimeout(() => {
-    thankDriver();
+    thankDriver(payload);
   }, 1000);
 }
 

@@ -14,9 +14,10 @@ function logger(event, payload) {
 const server = new Server();
 
 // create a namespace
-// listening for events at http://localhost:3001/brightness
+// listening for events at http://localhost:3001/caps
 const caps = server.of('/caps');
 
+//create / allow for connections
 caps.on('connection', (socket) => {
   console.log('Socket connected to Caps namespace!', socket.id);
 
@@ -32,20 +33,30 @@ caps.on('connection', (socket) => {
   });
 
   //listen to all events
+
+  //logs all events
+  socket.onAny((event, payload) => {
+    logger(event, payload);
+  });
+
   socket.on('PICKUP', (payload) => {
-    logger('PICKUP', payload);
-    caps.emit('PICKUP', payload);
+    //logger('PICKUP', payload);
+    //caps.emit('PICKUP', payload);
+    socket.broadcast.emit('PICKUP', payload);
   });
 
   socket.on('IN-TRANSIT', (payload) => {
-    logger('IN-TRANSIT', payload);
-    caps.emit('IN-TRANSIT', payload);
+    //logger('IN-TRANSIT', payload);
+    // caps.emit('IN-TRANSIT', payload);
+    socket.broadcast.emit('IN-TRANSIT', payload);
   });
 
   socket.on('DELIVERED', (payload) => {
-    logger('DELIVERED', payload);
-    caps.emit('DELIVERED', payload);
+    //logger('DELIVERED', payload);
+    // caps.emit('DELIVERED', payload);
+    socket.broadcast.emit('DELIVERED', payload);
   });
+
 });
 
 server.listen(PORT);

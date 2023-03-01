@@ -2,8 +2,7 @@
 // const socket  = io('http://localhost:3001/caps');
 const { socket } = require('../socket');
 
-// Listens for a pickup event from the Global Event Pool and responds with the following:
-// eventPool.on('PICKUP', pickupAndDeliver);
+
 
 
 function pickupAndDeliver(payload) {
@@ -18,16 +17,14 @@ function pickupAndDeliver(payload) {
 }
 
 function pickup(payload) {
-  // Log a message to the console: DRIVER: picked up <ORDER_ID>.
+  // As a driver, I want to alert the system when I have picked up a package and it is in transit.
   console.log(`DRIVER: picked up: ${payload.orderId}`);
-  // Emit an in-transit event to the Global Event Pool with the order payload.
   socket.emit('IN-TRANSIT', payload);
 }
 
 function delivery(payload) {
-  // Log a confirmation message to the console: DRIVER: delivered <ORDER_ID>.
+  // As a driver, I want to alert the system when a package has been delivered.
   console.log(`DRIVER: delivered ${payload.orderId}`);
-  // Emit a delivered event to the Global Event Pool with the order payload.
   socket.emit('DELIVERED', payload);
 
 }
