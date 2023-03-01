@@ -1,10 +1,16 @@
 const eventPool = require('../eventPool');
-const handler = require('./handler');
+const { createPackage, thankDriver } = require('./handler');
 
-eventPool.on('VENDOR', (store) => {
+
+eventPool.on('DELIVERED', confirmDelivery);
+
+// responds by logging a message to the console:
+function confirmDelivery() {
   setTimeout(() => {
-    handler(store);
+    thankDriver();
   }, 1000);
-});
+}
 
-
+setInterval(() => {
+  createPackage();
+}, 5000);
