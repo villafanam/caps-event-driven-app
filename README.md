@@ -1,13 +1,13 @@
 
-# LAB - Class 11
+# LAB - Class 12
 
-## Project: caps-system
+## Project: Socket.io
 
 ### Author: Marco Villafana
 
 ### Problem Domain  
 
- Setup a pool of events and handler functions, with the intent being to refactor parts of the system throughout the week, but keep the handlers themselves largely the same.
+- Refactor lab 11 to use the Socket.io libraries. This will allow communication between Server and Client applications
 
 ### Links and Resources
 
@@ -21,19 +21,30 @@
 
 #### How to initialize/run your application (where applicable)
 
-- e.g. `node hub.js`
+1. `node server/index.js`
+2. `node clients/driver/index.js`
+3. `node clients/vendor/index.js`
 
 #### Features / Routes
 
-- Hub.js
-  - Implement a Module for a Global Event Pool
-  - Implement a Module for Managing Global Package Events
+- server.js
+  - Configure a Global Event Pool that every client socket should listen for:
+  - `PICKUP` - this will be broadcast to all sockets.
+  - `IN-TRANSIT` - this will be emitted only to Vendors that have - joined the appropriate room.
+  `DELIVERED` - this will be be emitted only to Vendors that have - joined the appropriate room.
 
 - Vendor
-  - Implement a Module for Managing Vendor Events
+  - Connects to the CAPS Application Server using `socket.io-client`
+  - Upon connection, simulate a new customer order
+  - Listen for the delivered event coming in from the CAPS server.
+  - After the delivery event has been received, exit the application using `process.exit()`.
 
 - Driver
-  - Implement a Module for Managing Driver Events
+  - Connects to the CAPS Application Server using `socket.io-client`
+  - Once connected, the Driver client module should listen for any appropriate events from the Serve
+  - Simulate the following events and emit payloads to the CAPS Application Server upon receiving a “PICKUP” event
+    - `IN-TRANSIT`
+    - `DELIVERED`
 
 #### Tests
 
@@ -42,4 +53,4 @@
 
 #### UML
 
-![lab 11 UML](/assets/lab11_uml.png)
+
