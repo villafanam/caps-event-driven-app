@@ -4,7 +4,7 @@ const { pickupAndDeliver } = require('./handler');
 // const socket  = io('http://localhost:3001/caps');
 const { socket } = require('../socket');
 
-// Listens for a pickup event from the Global Event Pool and responds with the following:
+// As a driver, I want to be notified when there is a package to be delivered.
 socket.on('PICKUP', pickupAndDeliver);
 
 
