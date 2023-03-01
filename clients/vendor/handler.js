@@ -1,4 +1,7 @@
-const eventPool = require('../eventPool');
+
+// const { io } = require('socket.io-client');
+// const socket  = io('http://localhost:3001/caps');
+const { socket } = require('../socket');
 
 // Load Chance
 var Chance = require('chance');
@@ -18,11 +21,12 @@ function createPackage(payload = null){
 
   // not required, but maybe useful for debugging
   console.log('VENDOR: we have an order ready');
-  eventPool.emit('PICKUP', payload);
+  socket.emit('PICKUP', payload);
 }
 
 function thankDriver(){
   console.log('Thank you for ordering!');
+  process.exit();
 }
 
 module.exports = {

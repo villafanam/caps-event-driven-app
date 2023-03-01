@@ -1,8 +1,8 @@
 'use strict';
 
 // bring in the object to be mocked
-const eventPool = require('../eventPool');
-const handler= require('./handler');
+const eventPool = require('../../eventPool');
+const handler = require('./handler');
 
 // Load Chance
 var Chance = require('chance');
@@ -17,11 +17,11 @@ var chance = new Chance();
 //     emit: jest.fn(),
 //   };
 // });
-console.log = jest.fn();
-eventPool.emit = jest.fn();
+// console.log = jest.fn();
+// eventPool.emit = jest.fn();
 
 
-describe('Handle Vendor', () => {
+// describe('Handle Vendor', () => {
   // it('emits PICKUP payload', () => {
   //   let store = chance.company();
   //   const  payload = {
@@ -34,4 +34,4 @@ describe('Handle Vendor', () => {
   //   handler(store);
   //   expect(eventPool.emit).toHaveBeenCalledWith('PICKUP', payload);
   // });
-});
+// });
