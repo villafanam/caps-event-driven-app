@@ -1,10 +1,7 @@
 const eventPool = require('../eventPool');
-const handler = require('./handler');
+const { pickupAndDeliver } = require('./handler');
 
-eventPool.on('PICKUP', (payload) => {
-  setTimeout(() => {
-    handler(payload);
-  }, 1000);
-});
+// Listens for a pickup event from the Global Event Pool and responds with the following:
+eventPool.on('PICKUP', pickupAndDeliver);
 
 
