@@ -12,7 +12,7 @@
 ### Links and Resources
 
 - [GitHub Actions ci/cd](https://github.com/villafanam/caps-event-driven-app/actions) 
-- [GitHub PR](https://github.com/villafanam/caps-event-driven-app/pull/2)
+- [GitHub PR](https://github.com/villafanam/caps-event-driven-app/pull/5)
 - [back-end server url](https://caps-event-driven-app.onrender.com) 
 
 ### Setup
