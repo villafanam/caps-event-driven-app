@@ -1,13 +1,14 @@
 
-# LAB - Class 12
+# LAB - Class 13
 
-## Project: Socket.io
+## Project: Message Queues
 
 ### Author: Marco Villafana
 
 ### Problem Domain  
 
-- Refactor lab 11 to use the Socket.io libraries. This will allow communication between Server and Client applications
+- Implement a system to guarantee that notification payloads are read by their intended subscriber. 
+- Implement a “Queue” system so that nothing gets lost. Every event sent will be logged and held onto by the server until the intended recipient acknowledges that they received the message. At any time, a subscriber can get all of the messages they might have missed.
 
 ### Links and Resources
 
@@ -23,34 +24,26 @@
 
 1. `node server/index.js`
 2. `node clients/driver/index.js`
-3. `node clients/vendor/index.js`
+3. `node clients/flower-vendor/index.js`
+4. `node clients/widget-vendor/index.js`
 
 #### Features / Routes
 
-- server.js
-  - Configure a Global Event Pool that every client socket should listen for:
-  - `PICKUP` - this will be broadcast to all sockets.
-  - `IN-TRANSIT` - this will be emitted only to Vendors that have - joined the appropriate room.
-  `DELIVERED` - this will be be emitted only to Vendors that have - joined the appropriate room.
-
-- Vendor
-  - Connects to the CAPS Application Server using `socket.io-client`
-  - Upon connection, simulate a new customer order
-  - Listen for the delivered event coming in from the CAPS server.
-  - After the delivery event has been received, exit the application using `process.exit()`.
-
-- Driver
-  - Connects to the CAPS Application Server using `socket.io-client`
-  - Once connected, the Driver client module should listen for any appropriate events from the Serve
-  - Simulate the following events and emit payloads to the CAPS Application Server upon receiving a “PICKUP” event
-    - `IN-TRANSIT`
-    - `DELIVERED`
+- Our Server is going to have the same overall functionality, but we want to incorporate a few improvements to existing features:
+  - We want a feature to keep a log of payloads that reach our system, organized by vendor and event type.
+  - Payloads are “published” to the appropriate Clients for the appropriate events.
+- Client Vendor Applications used by retailers, should subscribe to appropriate Vendor Queues so that they can be alerted when a delivery was made.
+  - The Client can ask for all undelivered messages from a particular Server Queue.
+  - When a Client receives a message, it will need to let the hub server know that it was received.
 
 #### Tests
 
-- Driver-handler test
+- vendor-handler test
   - logs and emits IN-TRANSIT payload
 
 #### UML
 
+[class 13 uml](https://projects.invisionapp.com/freehand/document/U6LsQUWO9)
+
+![class 13 UML](/assets/lab13_uml.png)
 

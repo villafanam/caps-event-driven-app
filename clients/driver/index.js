@@ -7,4 +7,4 @@ const { socket } = require('../socket');
 // As a driver, I want to be notified when there is a package to be delivered.
 socket.on('PICKUP', pickupAndDeliver);
 
-
+socket.emit('GET-ALL', {id: 'driver'});
