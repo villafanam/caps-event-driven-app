@@ -3,16 +3,14 @@
 const { socket } = require('../socket');
 
 
-
-
 function pickupAndDeliver(payload) {
   setTimeout(() => {
     pickup(payload);
-  }, 1000);
+  }, 5000);
 
   setTimeout(() => {
     delivery(payload);
-  }, 2000);
+  }, 8000);
 
 }
 

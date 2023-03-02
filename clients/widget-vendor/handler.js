@@ -1,6 +1,4 @@
 
-// const { io } = require('socket.io-client');
-// const socket  = io('http://localhost:3001/caps');
 const { socket } = require('../socket');
 
 // Load Chance
@@ -12,10 +10,12 @@ var chance = new Chance();
 function createPackage(payload = null){
   if (!payload) {
     payload = {
-      store: '1-206-flowers',
+      store: 'acme-widgets',
       orderId: chance.guid(),
       customer: chance.name(),
       address: chance.address(),
+      //messageId: chance.guid(),
+      queueId: 'acme-widgets',
     };
   }
 
@@ -26,7 +26,7 @@ function createPackage(payload = null){
 
 function thankDriver(payload){
   console.log('Thank you for ordering!', payload.customer);
-  process.exit();
+  //process.exit();
 }
 
 module.exports = {
